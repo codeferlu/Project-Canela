@@ -45,7 +45,10 @@ function saveUserData() {
     }
     document.getElementById("loginForm").reset(); // Reinicia el formulario
 }
-
+// Función para generar un ID aleatorio
+function generateRandomId() {
+    return Math.random().toString(36).substr(2, 9); // Genera un ID aleatorio
+}
 // Función para actualizar la tabla de clasificación
 function updateRankingTable() {
     const rankingData = document.getElementById("rankingData");
@@ -56,9 +59,16 @@ function updateRankingTable() {
     rankingData.innerHTML = "";
 
     // Recorre los datos de usuario y los agrega a la tabla
-    userData.forEach(user => {
+    userData.forEach((user, index) => {
         const row = document.createElement("tr"); // Crea una nueva fila en la tabla
-        row.innerHTML = `<td>${user.name}</td><td>${user.country}</td><td>${user.clicks}</td>`; // Agrega celdas con los datos del usuario
+
+        // Asigna un ID aleatorio a cada usuario
+        if (!user.id) {
+            user.id = generateRandomId();
+        }
+
+        // Agrega celdas con los datos del usuario, incluyendo la posición
+        row.innerHTML = `<td>${index + 1}</td><td>${user.name}</td><td>${user.country}</td><td>${user.clicks}</td><td>${user.id}</td>`;
         rankingData.appendChild(row); // Agrega la fila a la tabla
     });
 }
