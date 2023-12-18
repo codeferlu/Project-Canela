@@ -1,0 +1,4 @@
+/* Estilos personalizados para centrar la imagen */
+#fotobox {
+    height: 100vh; /* Opcional: ajusta la altura de la caja al 100% del viewport */
+}
